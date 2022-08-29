@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
+import {CurrentActiveTab} from "./Constext.jsx";
 
-export function Switches({onChangeActiveTab, activeTab}) {
+export function Switches({onChangeActiveTab}) {
+    const activeTab = useContext(CurrentActiveTab)
+
     function changeTab(tab) {
         onChangeActiveTab(tab);
     }

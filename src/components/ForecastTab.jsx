@@ -2,11 +2,13 @@ import React, {useContext, useEffect, useState} from "react";
 import {getForecast} from "./network.js";
 import {formatTime} from "./helpers.js";
 import {TemplateMiniForecast} from "./TemplateMiniForecast";
-import {CurrentCityContext} from "./Constext.jsx";
+import {CurrentActiveTab, CurrentCityContext} from "./Constext.jsx";
 
 const collectionMounths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-export function ForecastTab({activeTab}) {
+export function ForecastTab() {
+    const activeTab = useContext(CurrentActiveTab);
+
     if (activeTab !== 'forecast') return null;
 
     const currentCity = useContext(CurrentCityContext);

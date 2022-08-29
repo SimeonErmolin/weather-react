@@ -1,9 +1,11 @@
 import React, {useContext, useEffect, useState} from "react";
 import cloud from "../icons/cloud.png"
 import {getForecast} from "./network.js";
-import {CurrentCityContext} from "./Constext.jsx";
+import {CurrentActiveTab, CurrentCityContext} from "./Constext.jsx";
 
-export function NowTab({activeTab, onAddFavouriteCity}) {
+export function NowTab({onAddFavouriteCity}) {
+    const activeTab = useContext(CurrentActiveTab);
+
     if (activeTab !== 'now') return null;
 
     const currentCity = useContext(CurrentCityContext);

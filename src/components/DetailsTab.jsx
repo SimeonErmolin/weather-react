@@ -1,9 +1,11 @@
 import React, {useContext, useEffect, useState} from "react";
 import {getForecast} from "./network.js";
 import {getTime} from "./helpers.js";
-import {CurrentCityContext} from "./Constext.jsx";
+import {CurrentActiveTab, CurrentCityContext} from "./Constext.jsx";
 
-export function DetailsTab({activeTab}) {
+export function DetailsTab() {
+    const activeTab = useContext(CurrentActiveTab);
+
     if (activeTab !== 'details') return null;
 
     const currentCity = useContext(CurrentCityContext);
@@ -12,6 +14,7 @@ export function DetailsTab({activeTab}) {
     const [weather, setWeather] = useState('undefined');
     const [sunrise, setSunrise] = useState('00:00');
     const [sunset, setSunset] = useState('00:00');
+
 
     useEffect(() => {
         if (currentCity === 'City not selected') return;
