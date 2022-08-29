@@ -7,12 +7,22 @@ const URL = {
 export async function getForecast(city, forecastFewDays) {
     const url = server_url => `${server_url}?q=${city}&appid=${URL.API_KEY}`;
 
-    if (!forecastFewDays) {
-        const response = await fetch(url(URL.SERVER_URL));
-        return response.json();
-    }   else {
-        const responseForecast = await fetch(url(URL.SERVER_URL_FORECAST));
-        return responseForecast.json();
+    try {
+        if (!forecastFewDays) {
+            const response = await fetch(url(URL.SERVER_URL));
+            const data = await response.json();
+
+            if (data.cod === '404') {
+                throw new Error('Данный город не существует!')
+            }
+
+            return data;
+        }   else {
+            const responseForecast = await fetch(url(URL.SERVER_URL_FORECAST));
+            return responseForecast.json();
+        }
+    }   catch (error) {
+        alert(error.message);
     }
 }
 

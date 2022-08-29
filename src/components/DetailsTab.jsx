@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {getForecast} from "./network.js";
 import {getTime} from "./helpers.js";
+import {CurrentCityContext} from "./Constext.jsx";
 
-export function DetailsTab({currentCity, activeTab}) {
+export function DetailsTab({activeTab}) {
     if (activeTab !== 'details') return null;
 
+    const currentCity = useContext(CurrentCityContext);
     const [temperature, setTemperature] = useState('0');
     const [feelsTemp, setFeelsTemp] = useState('0');
     const [weather, setWeather] = useState('undefined');
