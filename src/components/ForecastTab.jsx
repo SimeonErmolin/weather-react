@@ -35,7 +35,7 @@ export function ForecastTab() {
     }, [currentCity]);
 
     const forecastList = listForecasts.map((item, index) => {
-        return <TemplateMiniForecast key={index} date={item.date} degrees={item.degrees} feelsDegrees={item.feelsDegrees} time={item.time} weather={item.weather} weatherImg={item.weatherImg} />
+        return <TemplateMiniForecast key={index} {...item} />
     })
 
     return (
