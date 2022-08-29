@@ -1,13 +1,9 @@
 import React, {useContext, useEffect, useState} from "react";
 import cloud from "../icons/cloud.png"
 import {getForecast} from "./network.js";
-import {CurrentActiveTab, CurrentCityContext} from "./Constext.jsx";
+import {CurrentCityContext} from "./Constext.jsx";
 
 export function NowTab({onAddFavouriteCity}) {
-    const activeTab = useContext(CurrentActiveTab);
-
-    if (activeTab !== 'now') return null;
-
     const currentCity = useContext(CurrentCityContext);
     const [temperature, setTemperature] = useState('0');
     const [iconWeather, setIconWeather] = useState();

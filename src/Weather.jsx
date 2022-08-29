@@ -6,7 +6,7 @@ import {ForecastTab} from "./components/ForecastTab";
 import {Switches} from "./components/Switches";
 import {AddedLocations} from "./components/AddedLocations";
 import {getForecast} from "./components/network.js";
-import {CurrentActiveTab, CurrentCityContext} from "./components/Constext";
+import {CurrentCityContext} from "./components/Constext";
 
 export function Weather() {
     const [userCity, setUserCity] = useState('City not selected');
@@ -42,13 +42,11 @@ export function Weather() {
                 <InputCity onCurrentCityChange={currentForecastChange} />
                 <div className="pages">
                     <CurrentCityContext.Provider value={userCity}>
-                        <CurrentActiveTab.Provider value={activeTab} >
-                            <NowTab onAddFavouriteCity={addFavouriteCity} />
-                            <DetailsTab />
-                            <ForecastTab />
-                            <Switches onChangeActiveTab={setActiveTab} />
-                            <AddedLocations listFavouriteCities={listFavouriteCities} onDeleteCity={deleteCityFromFavourites} onMakeCurrentCity={makeCurrentCity} />
-                        </CurrentActiveTab.Provider>
+                        {activeTab === 'now' ? <NowTab onAddFavouriteCity={addFavouriteCity} /> : null}
+                        {activeTab === 'details' ? <DetailsTab /> : null}
+                        {activeTab === 'forecast' ? <ForecastTab /> : null}
+                        <Switches activeTab={activeTab} onChangeActiveTab={setActiveTab} />
+                        <AddedLocations listFavouriteCities={listFavouriteCities} onDeleteCity={deleteCityFromFavourites} onMakeCurrentCity={makeCurrentCity} />
                     </CurrentCityContext.Provider>
                 </div>
             </div>
