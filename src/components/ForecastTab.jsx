@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {getForecast} from "./network.js";
-import {formatTime} from "./helpers.js";
+import {formatTime, TEMPLATE_CITY} from "./helpers.js";
 import {TemplateMiniForecast} from "./TemplateMiniForecast";
 import {CurrentCityContext} from "./Constext.jsx";
 
@@ -11,7 +11,7 @@ export function ForecastTab() {
     const [listForecasts, setListForecasts] = useState([]);
 
     useEffect(() => {
-        if (currentCity === 'City not selected') return;
+        if (currentCity === TEMPLATE_CITY) return;
         getForecast(currentCity, true).then(data => {
             const dateList = [];
             data.list.forEach(item => {

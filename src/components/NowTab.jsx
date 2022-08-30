@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import cloud from "../icons/cloud.png"
 import {getForecast} from "./network.js";
 import {CurrentCityContext} from "./Constext.jsx";
+import {TEMPLATE_CITY} from "./helpers.js";
 
 export function NowTab({onAddFavouriteCity}) {
     const currentCity = useContext(CurrentCityContext);
@@ -9,7 +10,7 @@ export function NowTab({onAddFavouriteCity}) {
     const [iconWeather, setIconWeather] = useState();
 
     useEffect(() => {
-        if (currentCity === 'City not selected') return;
+        if (currentCity === TEMPLATE_CITY) return;
         getForecast(currentCity).then(data => {
             setTemperature(Math.round(data.main.temp));
             setIconWeather(`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
@@ -26,7 +27,9 @@ export function NowTab({onAddFavouriteCity}) {
                 <span className="temperature--number">{temperature}</span>
                 <span className="circle"></span>
             </p>
-            <span className="cloud"><img src={iconWeather ? iconWeather : cloud} alt="icon" /></span>
+            <span className="cloud">
+                <img src={iconWeather ? iconWeather : cloud} alt="icon" />
+            </span>
             <p className="current-city--bottom">{currentCity}</p>
             <span className="hearth" onClick={addFavouriteCity}></span>
         </div>

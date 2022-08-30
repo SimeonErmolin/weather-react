@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {getForecast} from "./network.js";
-import {getTime} from "./helpers.js";
+import {getTime, TEMPLATE_CITY} from "./helpers.js";
 import {CurrentCityContext} from "./Constext.jsx";
 
 export function DetailsTab() {
@@ -12,7 +12,7 @@ export function DetailsTab() {
     const [sunset, setSunset] = useState('00:00');
 
     useEffect(() => {
-        if (currentCity === 'City not selected') return;
+        if (currentCity === TEMPLATE_CITY) return;
         getForecast(currentCity).then(data => {
             setTemperature(Math.round(data.main.temp));
             setFeelsTemp(Math.round(data.main.feels_like));

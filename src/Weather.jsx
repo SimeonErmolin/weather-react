@@ -7,9 +7,10 @@ import {Switches} from "./components/Switches";
 import {AddedLocations} from "./components/AddedLocations";
 import {getForecast} from "./components/network.js";
 import {CurrentCityContext} from "./components/Constext";
+import {TABS, TEMPLATE_CITY} from "./components/helpers.js"
 
 export function Weather() {
-    const [userCity, setUserCity] = useState('City not selected');
+    const [userCity, setUserCity] = useState(TEMPLATE_CITY);
     const [activeTab, setActiveTab] = useState('now');
     const [listFavouriteCities, setListFavouriteCities] = useState([]);
 
@@ -20,7 +21,7 @@ export function Weather() {
     }
 
     function addFavouriteCity(e) {
-        if (e === 'City not selected') return;
+        if (e === TEMPLATE_CITY) return;
         if (listFavouriteCities.some(task => e === task) === true) {
             alert('Этот город уже в избранном!');
         } else {
@@ -42,11 +43,16 @@ export function Weather() {
                 <InputCity onCurrentCityChange={currentForecastChange} />
                 <div className="pages">
                     <CurrentCityContext.Provider value={userCity}>
-                        {activeTab === 'now' ? <NowTab onAddFavouriteCity={addFavouriteCity} /> : null}
-                        {activeTab === 'details' ? <DetailsTab /> : null}
-                        {activeTab === 'forecast' ? <ForecastTab /> : null}
-                        <Switches activeTab={activeTab} onChangeActiveTab={setActiveTab} />
-                        <AddedLocations listFavouriteCities={listFavouriteCities} onDeleteCity={deleteCityFromFavourites} onMakeCurrentCity={makeCurrentCity} />
+                        {activeTab === TABS.NOW ? <NowTab onAddFavouriteCity={addFavouriteCity} /> : null}
+                        {activeTab === TABS.DETAILS ? <DetailsTab /> : null}
+                        {activeTab === TABS.FORECAST ? <ForecastTab /> : null}
+                        <Switches
+                            activeTab={activeTab}
+                            onChangeActiveTab={setActiveTab} />
+                        <AddedLocations
+                            listFavouriteCities={listFavouriteCities}
+                            onDeleteCity={deleteCityFromFavourites}
+                            onMakeCurrentCity={makeCurrentCity} />
                     </CurrentCityContext.Provider>
                 </div>
             </div>

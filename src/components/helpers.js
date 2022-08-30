@@ -19,3 +19,11 @@ export function formatTime(time, utc) {
 
     return `${hours}:${minutes}`
 }
+
+export const TEMPLATE_CITY = 'City not selected';
+
+export const TABS = {
+    NOW: 'now',
+    DETAILS: 'details',
+    FORECAST: 'forecast',
+}
