@@ -1,12 +1,18 @@
 import React from "react";
+import {setCityData} from "./setCityData.js";
+import {listCities} from "./actions.js";
+import {useDispatch, useSelector} from "react-redux";
 
-export function TemplateFavouriteCity({city, number, onDeleteCity, onMakeCurrentCity}) {
+export function TemplateFavouriteCity({city, number}) {
+    const listFavCities = useSelector(state => state.listOfCities);
+    const dispatch = useDispatch();
+
     function deleteCity() {
-        onDeleteCity(number);
+        dispatch((listCities([...listFavCities.slice(0, number), ...listFavCities.slice(number + 1)])))
     }
 
     function makeCurrentCity() {
-        onMakeCurrentCity(city)
+        setCityData(city)
     }
 
     return (

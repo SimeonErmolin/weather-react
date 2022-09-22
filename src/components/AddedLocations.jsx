@@ -1,18 +1,16 @@
 import React from "react";
 import {TemplateFavouriteCity} from "./TemplateFavouriteCity";
+import {useSelector} from "react-redux";
 
-export function AddedLocations({listFavouriteCities, onDeleteCity, onMakeCurrentCity}) {
-    const locationsList = listFavouriteCities.map((item, index) => {
-        return <TemplateFavouriteCity key={item.toString()} number={index} city={item} onDeleteCity={DeleteCity} onMakeCurrentCity={makeCurrentCity} />
+export function AddedLocations() {
+    const listFavCities = useSelector(state => state.listOfCities);
+
+    const locationsList = listFavCities.map((item, index) => {
+        return <TemplateFavouriteCity
+            key={item.toString()}
+            number={index} city={item}
+        />
     })
-
-    function makeCurrentCity(city) {
-        onMakeCurrentCity(city)
-    }
-
-    function DeleteCity(number) {
-        onDeleteCity(number)
-    }
 
     return (
         <div className="locations">

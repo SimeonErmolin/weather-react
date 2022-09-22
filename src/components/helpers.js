@@ -1,3 +1,11 @@
+export const TEMPLATE_CITY = 'City not selected';
+
+export const TABS = {
+    NOW: 'now',
+    DETAILS: 'details',
+    FORECAST: 'forecast',
+}
+
 export function getTime(timestamp) {
     let time = new Date(timestamp * 1000);
     return formatTime(time);
@@ -18,12 +26,4 @@ export function formatTime(time, utc) {
     }
 
     return `${hours}:${minutes}`
-}
-
-export const TEMPLATE_CITY = 'City not selected';
-
-export const TABS = {
-    NOW: 'now',
-    DETAILS: 'details',
-    FORECAST: 'forecast',
 }

@@ -1,30 +1,12 @@
-import React, {useContext, useEffect, useState} from "react";
-import {getForecast} from "./network.js";
-import {getTime, TEMPLATE_CITY} from "./helpers.js";
-import {CurrentCityContext} from "./Constext.jsx";
+import React from "react";
+import {useSelector} from "react-redux";
 
 export function DetailsTab() {
-    const currentCity = useContext(CurrentCityContext);
-    const [temperature, setTemperature] = useState('0');
-    const [feelsTemp, setFeelsTemp] = useState('0');
-    const [weather, setWeather] = useState('undefined');
-    const [sunrise, setSunrise] = useState('00:00');
-    const [sunset, setSunset] = useState('00:00');
-
-    useEffect(() => {
-        if (currentCity === TEMPLATE_CITY) return;
-        getForecast(currentCity).then(data => {
-            setTemperature(Math.round(data.main.temp));
-            setFeelsTemp(Math.round(data.main.feels_like));
-            setWeather(data.weather[0].main);
-            setSunrise(getTime(data.sys.sunrise));
-            setSunset(getTime(data.sys.sunset));
-        })
-    }, [currentCity])
+    const {cityName, temperature, feelsTemp, weather, sunrise, sunset} = useSelector(state => state.currentCity)
 
     return (
         <div className="info details">
-            <p className="current-city--top">{currentCity}</p>
+            <p className="current-city--top">{cityName}</p>
             <div className="info-weather">
                 <p>
                     Temperature: <b className="temperature-info">{temperature}</b>

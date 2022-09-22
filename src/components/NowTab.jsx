@@ -1,24 +1,20 @@
-import React, {useContext, useEffect, useState} from "react";
+import React from "react";
 import cloud from "../icons/cloud.png"
-import {getForecast} from "./network.js";
-import {CurrentCityContext} from "./Constext.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {listCities} from "./actions.js";
 import {TEMPLATE_CITY} from "./helpers.js";
 
-export function NowTab({onAddFavouriteCity}) {
-    const currentCity = useContext(CurrentCityContext);
-    const [temperature, setTemperature] = useState('0');
-    const [iconWeather, setIconWeather] = useState();
-
-    useEffect(() => {
-        if (currentCity === TEMPLATE_CITY) return;
-        getForecast(currentCity).then(data => {
-            setTemperature(Math.round(data.main.temp));
-            setIconWeather(`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
-        })
-    }, [currentCity])
+export function NowTab() {
+    const {cityName, temperature, iconWeather} = useSelector(state => state.currentCity);
+    const listFavCities = useSelector(state => state.listOfCities);
+    const dispatch = useDispatch();
 
     function addFavouriteCity() {
-        onAddFavouriteCity(currentCity)
+        if (cityName === TEMPLATE_CITY) return;
+        if (listFavCities.some(task => cityName === task) === true) {
+            alert('Этот город уже в избранном!');
+        } else {
+            dispatch(listCities([...listFavCities, cityName]));        }
     }
 
     return (
@@ -30,7 +26,7 @@ export function NowTab({onAddFavouriteCity}) {
             <span className="cloud">
                 <img src={iconWeather ? iconWeather : cloud} alt="icon" />
             </span>
-            <p className="current-city--bottom">{currentCity}</p>
+            <p className="current-city--bottom">{cityName}</p>
             <span className="hearth" onClick={addFavouriteCity}></span>
         </div>
     )
