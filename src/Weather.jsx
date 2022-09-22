@@ -6,19 +6,14 @@ import {ForecastTab} from "./components/ForecastTab";
 import {Switches} from "./components/Switches";
 import {AddedLocations} from "./components/AddedLocations";
 import {TABS} from "./components/helpers.js"
-import {setCityData} from "./components/setCityData.js";
 
 export function Weather() {
     const [activeTab, setActiveTab] = useState('now');
 
-    function currentForecastChange(e) {
-        setCityData(e)
-    }
-
     return (
         <div className="tabs">
             <div className="tab">
-                <InputCity onCurrentCityChange={currentForecastChange} />
+                <InputCity />
                 <div className="pages">
                         {activeTab === TABS.NOW ? <NowTab /> : null}
                         {activeTab === TABS.DETAILS ? <DetailsTab /> : null}

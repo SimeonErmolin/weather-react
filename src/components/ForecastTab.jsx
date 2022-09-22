@@ -2,8 +2,6 @@ import React from "react";
 import {TemplateMiniForecast} from "./TemplateMiniForecast";
 import {useSelector} from "react-redux";
 
-
-
 export function ForecastTab() {
     const {cityName} = useSelector(state => state.currentCity)
     const listForecasts = useSelector(state => state.listOfForecasts)

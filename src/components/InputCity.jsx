@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import {setCityData} from "./setCityData.js";
 
-export function InputCity({onCurrentCityChange}) {
+export function InputCity() {
     const [currentCity, setCurrentCity] = useState('');
 
     function onSubmitValue(e) {
@@ -8,7 +9,7 @@ export function InputCity({onCurrentCityChange}) {
 
         if (currentCity === '') return;
 
-        onCurrentCityChange(currentCity);
+        setCityData(currentCity)
 
         setCurrentCity('')
     }

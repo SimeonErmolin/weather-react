@@ -11,13 +11,9 @@ export function TemplateFavouriteCity({city, number}) {
         dispatch((listCities([...listFavCities.slice(0, number), ...listFavCities.slice(number + 1)])))
     }
 
-    function makeCurrentCity() {
-        setCityData(city)
-    }
-
     return (
         <span className="favourite-city">
-            <p className="city--name" onClick={makeCurrentCity}>{city}</p>
+            <p className="city--name" onClick={() => setCityData(city)}>{city}</p>
             <button className="btnDelete" onClick={deleteCity}>×</button>
         </span>
     )
