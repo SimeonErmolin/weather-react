@@ -1,5 +1,5 @@
 import React from "react";
-import {TABS} from "./helpers.js";
+import {TABS} from "../helpers/helpers.js";
 
 export function Switches({activeTab, onChangeActiveTab}) {
 

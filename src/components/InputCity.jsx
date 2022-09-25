@@ -1,7 +1,9 @@
 import React, {useState} from "react";
-import {setCityData} from "./setCityData.js";
+import {useDispatch} from "react-redux";
+import {getCityData} from "../redux/actions.js";
 
 export function InputCity() {
+    const dispatch = useDispatch();
     const [currentCity, setCurrentCity] = useState('');
 
     function onSubmitValue(e) {
@@ -9,7 +11,7 @@ export function InputCity() {
 
         if (currentCity === '') return;
 
-        setCityData(currentCity)
+        dispatch(getCityData(currentCity))
 
         setCurrentCity('')
     }

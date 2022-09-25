@@ -6,6 +6,8 @@ export const TABS = {
     FORECAST: 'forecast',
 }
 
+export const collectionMounths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 export function getTime(timestamp) {
     let time = new Date(timestamp * 1000);
     return formatTime(time);

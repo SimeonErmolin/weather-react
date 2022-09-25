@@ -1,6 +1,6 @@
-import {combineReducers, createStore} from 'redux';
+import {combineReducers} from 'redux';
 import {typesOfActions} from "./actions.js";
-import {TEMPLATE_CITY} from "./helpers.js";
+import {TEMPLATE_CITY} from "../helpers/helpers.js";
 
 const defaultState = {
     cityName: TEMPLATE_CITY,
@@ -52,5 +52,3 @@ export const weatherApp = combineReducers({
     listOfForecasts,
     listOfCities,
 })
-
-export const store = createStore(weatherApp);

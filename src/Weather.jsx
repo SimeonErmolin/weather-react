@@ -5,7 +5,7 @@ import {DetailsTab} from "./components/DetailsTab.jsx";
 import {ForecastTab} from "./components/ForecastTab";
 import {Switches} from "./components/Switches";
 import {AddedLocations} from "./components/AddedLocations";
-import {TABS} from "./components/helpers.js"
+import {TABS} from "./helpers/helpers.js"
 
 export function Weather() {
     const [activeTab, setActiveTab] = useState('now');

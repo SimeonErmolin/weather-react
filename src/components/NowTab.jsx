@@ -1,8 +1,8 @@
 import React from "react";
 import cloud from "../icons/cloud.png"
 import {useDispatch, useSelector} from "react-redux";
-import {listCities} from "./actions.js";
-import {TEMPLATE_CITY} from "./helpers.js";
+import {listCities} from "../redux/actions.js";
+import {TEMPLATE_CITY} from "../helpers/helpers.js";
 
 export function NowTab() {
     const {cityName, temperature, iconWeather} = useSelector(state => state.currentCity);

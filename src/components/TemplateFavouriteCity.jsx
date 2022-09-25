@@ -1,6 +1,5 @@
 import React from "react";
-import {setCityData} from "./setCityData.js";
-import {listCities} from "./actions.js";
+import {getCityData, listCities} from "../redux/actions.js";
 import {useDispatch, useSelector} from "react-redux";
 
 export function TemplateFavouriteCity({city, number}) {
@@ -13,7 +12,7 @@ export function TemplateFavouriteCity({city, number}) {
 
     return (
         <span className="favourite-city">
-            <p className="city--name" onClick={() => setCityData(city)}>{city}</p>
+            <p className="city--name" onClick={() => dispatch(getCityData(city))}>{city}</p>
             <button className="btnDelete" onClick={deleteCity}>×</button>
         </span>
     )
