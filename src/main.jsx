@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom/client'
 import { Weather } from './Weather.jsx'
 import './style.css'
 import {Provider} from "react-redux";
-import {weatherApp} from "./redux/reducers.js";
-import {applyMiddleware, createStore} from "redux";
-import thunk from 'redux-thunk';
+import {configureStore, combineReducers} from "@reduxjs/toolkit";
+import weatherSlice from "./redux/redux"
 
-const store = createStore(
-    weatherApp,
-    applyMiddleware(thunk)
-);
+const rootReducer = combineReducers({
+    weatherApp: weatherSlice
+})
+
+const store = configureStore({
+    reducer: rootReducer
+})
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

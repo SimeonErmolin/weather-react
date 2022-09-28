@@ -1,20 +1,19 @@
 import React from "react";
 import cloud from "../icons/cloud.png"
 import {useDispatch, useSelector} from "react-redux";
-import {listCities} from "../redux/actions.js";
 import {TEMPLATE_CITY} from "../helpers/helpers.js";
+import {changeListCities} from "../redux/redux.js";
 
 export function NowTab() {
-    const {cityName, temperature, iconWeather} = useSelector(state => state.currentCity);
-    const listFavCities = useSelector(state => state.listOfCities);
+    const {cityName, temperature, iconWeather, listCities} = useSelector(state => state.weatherApp);
     const dispatch = useDispatch();
 
     function addFavouriteCity() {
         if (cityName === TEMPLATE_CITY) return;
-        if (listFavCities.some(task => cityName === task) === true) {
+        if (listCities.some(task => cityName === task) === true) {
             alert('Этот город уже в избранном!');
         } else {
-            dispatch(listCities([...listFavCities, cityName]));        }
+            dispatch(changeListCities([...listCities, cityName]));        }
     }
 
     return (

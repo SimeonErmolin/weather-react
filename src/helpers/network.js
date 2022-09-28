@@ -1,14 +1,17 @@
+import {createAsyncThunk} from "@reduxjs/toolkit/src";
+
 const URL = {
     SERVER_URL: 'https://api.openweathermap.org/data/2.5/weather',
     SERVER_URL_FORECAST: 'https://api.openweathermap.org/data/2.5/forecast',
     API_KEY: '28a10f79ddcb24a9237ce72a6e79c9a1&units=metric',
 }
 
-export async function getForecast(city, forecastFewDays) {
-    const url = server_url => `${server_url}?q=${city}&appid=${URL.API_KEY}`;
+export const getCityData = createAsyncThunk(
+    'weather/getCityData',
+    async function (cityName) {
+        const url = server_url => `${server_url}?q=${cityName}&appid=${URL.API_KEY}`;
 
-    try {
-        if (!forecastFewDays) {
+        try {
             const response = await fetch(url(URL.SERVER_URL));
             const data = await response.json();
 
@@ -17,12 +20,23 @@ export async function getForecast(city, forecastFewDays) {
             }
 
             return data;
-        }   else {
-            const responseForecast = await fetch(url(URL.SERVER_URL_FORECAST));
-            return responseForecast.json();
+        } catch (err) {
+            alert(err.message)
         }
-    }   catch (error) {
-        alert(error.message);
     }
-}
+)
 
+export const getForecastData = createAsyncThunk(
+    'weather/getForecastData',
+    async function (cityName) {
+        try {
+            const url = server_url => `${server_url}?q=${cityName}&appid=${URL.API_KEY}`;
+
+            const responseForecast = await fetch(url(URL.SERVER_URL_FORECAST));
+
+            return responseForecast.json();
+        } catch (err) {
+            alert(err.message)
+        }
+    }
+)

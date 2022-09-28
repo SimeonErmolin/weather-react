@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 
 export function DetailsTab() {
-    const {cityName, temperature, feelsTemp, weather, sunrise, sunset} = useSelector(state => state.currentCity)
+    const {cityName, temperature, feelsTemp, weather, sunrise, sunset} = useSelector(state => state.weatherApp)
 
     return (
         <div className="info details">

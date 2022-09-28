@@ -3,8 +3,7 @@ import {TemplateMiniForecast} from "./TemplateMiniForecast";
 import {useSelector} from "react-redux";
 
 export function ForecastTab() {
-    const {cityName} = useSelector(state => state.currentCity)
-    const listForecasts = useSelector(state => state.listOfForecasts)
+    const {cityName, listForecasts} = useSelector(state => state.weatherApp)
 
     const forecastList = listForecasts.map((item, index) => {
         return <TemplateMiniForecast key={index} {...item} />

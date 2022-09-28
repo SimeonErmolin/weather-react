@@ -3,9 +3,9 @@ import {TemplateFavouriteCity} from "./TemplateFavouriteCity";
 import {useSelector} from "react-redux";
 
 export function AddedLocations() {
-    const listFavCities = useSelector(state => state.listOfCities);
+    const listCities = useSelector(state => state.weatherApp.listCities);
 
-    const locationsList = listFavCities.map((item, index) => {
+    const locationsList = listCities.map((item, index) => {
         return <TemplateFavouriteCity
             key={item.toString()}
             number={index} city={item}

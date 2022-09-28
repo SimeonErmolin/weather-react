@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {getCityData} from "../redux/actions.js";
+import {getCityData, getForecastData} from "../helpers/network.js";
 
 export function InputCity() {
     const dispatch = useDispatch();
@@ -12,6 +12,7 @@ export function InputCity() {
         if (currentCity === '') return;
 
         dispatch(getCityData(currentCity))
+        dispatch(getForecastData(currentCity))
 
         setCurrentCity('')
     }
